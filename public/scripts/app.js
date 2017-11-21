@@ -19,8 +19,14 @@ var IndecisionApp = function (_React$Component) {
     _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
     _this.handlePick = _this.handlePick.bind(_this);
     _this.handleAddOption = _this.handleAddOption.bind(_this);
+<<<<<<< HEAD
     _this.state = {
       options: []
+=======
+    _this.handleDeleteOption = _this.handleDeleteOption.bind(_this);
+    _this.state = {
+      options: props.options
+>>>>>>> refs/remotes/origin/master
     };
     return _this;
   }
@@ -28,10 +34,20 @@ var IndecisionApp = function (_React$Component) {
   _createClass(IndecisionApp, [{
     key: 'handleDeleteOptions',
     value: function handleDeleteOptions() {
+<<<<<<< HEAD
       this.setState(function () {
         return {
           options: []
         };
+=======
+      // this.setState(() => {
+      //   return {
+      //     options: []
+      //   };
+      // });
+      this.setState(function () {
+        return { options: [] };
+>>>>>>> refs/remotes/origin/master
       });
     }
   }, {
@@ -50,21 +66,53 @@ var IndecisionApp = function (_React$Component) {
         return 'This option already exists';
       }
 
+<<<<<<< HEAD
       this.setState(function (prevState) {
         return {
           options: prevState.options.concat(option)
+=======
+      // this.setState((prevState) => {
+      //   return {
+      //     options: prevState.options.concat([option])
+      //   };
+      // });
+      this.setState(function (prevState) {
+        return { options: prevState.options.concat([option]) };
+      });
+    }
+  }, {
+    key: 'handleDeleteOption',
+    value: function handleDeleteOption(optionToRemove) {
+
+      // this.setState((prevState) => {
+      //   return {
+      //     options: prevState.options.filter((option) => {
+      //       return optionToRemove !== option;
+      //     })
+      //   }
+      // });
+      this.setState(function (prevState) {
+        return {
+          options: prevState.options.filter(function (option) {
+            return optionToRemove !== option;
+          })
+>>>>>>> refs/remotes/origin/master
         };
       });
     }
   }, {
     key: 'render',
     value: function render() {
+<<<<<<< HEAD
       var title = 'Indecision';
+=======
+>>>>>>> refs/remotes/origin/master
       var subtitle = 'Put your life in the hands of a computer';
 
       return React.createElement(
         'div',
         null,
+<<<<<<< HEAD
         React.createElement(Header, { title: title, subtitle: subtitle }),
         React.createElement(Action, {
           hasOptions: this.state.options.length > 0,
@@ -77,6 +125,12 @@ var IndecisionApp = function (_React$Component) {
         React.createElement(AddOption, {
           handleAddOption: this.handleAddOption
         })
+=======
+        React.createElement(Header, { subtitle: subtitle }),
+        React.createElement(Action, { hasOptions: this.state.options.length > 0, handlePick: this.handlePick }),
+        React.createElement(Options, { options: this.state.options, handleDeleteOptions: this.handleDeleteOptions, handleDeleteOption: this.handleDeleteOption }),
+        React.createElement(AddOption, { handleAddOption: this.handleAddOption })
+>>>>>>> refs/remotes/origin/master
       );
     }
   }]);
@@ -84,6 +138,7 @@ var IndecisionApp = function (_React$Component) {
   return IndecisionApp;
 }(React.Component);
 
+<<<<<<< HEAD
 var Header = function (_React$Component2) {
   _inherits(Header, _React$Component2);
 
@@ -201,10 +256,137 @@ var Option = function (_React$Component5) {
 
 var AddOption = function (_React$Component6) {
   _inherits(AddOption, _React$Component6);
+=======
+IndecisionApp.defaultProps = {
+  options: []
+};
+
+var Header = function Header(props) {
+  return React.createElement(
+    'div',
+    null,
+    React.createElement(
+      'h1',
+      null,
+      ' ',
+      props.title,
+      ' '
+    ),
+    props.subtitle && React.createElement(
+      'h2',
+      null,
+      ' ',
+      props.subtitle,
+      ' '
+    )
+  );
+};
+
+Header.defaultProps = {
+  title: 'Indecision'
+};
+
+// class Header extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <h1> {this.props.title} </h1>
+//         <h2> {this.props.subtitle} </h2>
+//       </div>
+//     )
+//   }
+// }
+
+//stateless functional component
+var Action = function Action(props) {
+  return React.createElement(
+    'div',
+    null,
+    React.createElement(
+      'button',
+      { onClick: props.handlePick, disabled: !props.hasOptions },
+      'What should I do?'
+    )
+  );
+};
+
+// class Action extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <button onClick={this.props.handlePick} disabled={!this.props.hasOptions}> 
+//           What should I do? 
+//         </button>
+//       </div>
+//     )
+//   }
+// }
+
+var Options = function Options(props) {
+  return React.createElement(
+    'div',
+    null,
+    React.createElement(
+      'button',
+      { onClick: props.handleDeleteOptions },
+      ' Remove All '
+    ),
+
+    //this.props.options.map((option) => <p key={option}> {option} </p>)
+    props.options.map(function (option) {
+      return React.createElement(Option, { key: option, optionText: option, handleDeleteOption: props.handleDeleteOption });
+    })
+  );
+};
+
+// class Options extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <button onClick={this.props.handleDeleteOptions}> Remove All </button>
+//         {
+//           //this.props.options.map((option) => <p key={option}> {option} </p>)
+//           this.props.options.map((option) => <Option key={option} optionText={option} />)
+//         }
+//       </div>
+//     )
+//   }
+// }
+
+var Option = function Option(props) {
+  return React.createElement(
+    'div',
+    null,
+    props.optionText,
+    React.createElement(
+      'button',
+      { onClick: function onClick(e) {
+          props.handleDeleteOption(props.optionText);
+        }
+      },
+      'Remove'
+    )
+  );
+};
+
+// class Option extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         {this.props.optionText}
+//       </div>
+//     )
+//   }
+// }
+
+var AddOption = function (_React$Component2) {
+  _inherits(AddOption, _React$Component2);
+>>>>>>> refs/remotes/origin/master
 
   function AddOption(props) {
     _classCallCheck(this, AddOption);
 
+<<<<<<< HEAD
     var _this6 = _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).call(this, props));
 
     _this6.handleAddOption = _this6.handleAddOption.bind(_this6);
@@ -212,6 +394,15 @@ var AddOption = function (_React$Component6) {
       error: undefined
     };
     return _this6;
+=======
+    var _this2 = _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).call(this, props));
+
+    _this2.handleAddOption = _this2.handleAddOption.bind(_this2);
+    _this2.state = {
+      error: undefined
+    };
+    return _this2;
+>>>>>>> refs/remotes/origin/master
   }
 
   _createClass(AddOption, [{
@@ -222,6 +413,14 @@ var AddOption = function (_React$Component6) {
       var option = e.target.elements.option.value.trim();
       var error = this.props.handleAddOption(option);
 
+<<<<<<< HEAD
+=======
+      // this.setState(() => {
+      //   return {
+      //     error: error // identical to only writing: error
+      //   };
+      // });
+>>>>>>> refs/remotes/origin/master
       this.setState(function () {
         return { error: error };
       });
@@ -240,7 +439,11 @@ var AddOption = function (_React$Component6) {
         React.createElement(
           'form',
           { onSubmit: this.handleAddOption },
+<<<<<<< HEAD
           React.createElement('input', { type: 'text', name: 'option' }),
+=======
+          React.createElement('input', { type: 'text', name: 'option', placeholder: 'Type option here' }),
+>>>>>>> refs/remotes/origin/master
           React.createElement(
             'button',
             null,
@@ -254,4 +457,17 @@ var AddOption = function (_React$Component6) {
   return AddOption;
 }(React.Component);
 
+<<<<<<< HEAD
 ReactDOM.render(React.createElement(IndecisionApp, null), document.getElementById('app'));
+=======
+// const User = (props) => {
+//   return (
+//     <div>
+//       <p>Name: {props.name} </p>
+//       <p>Age: {props.age} </p>
+//     </div>
+//   );
+// };
+
+ReactDOM.render(React.createElement(IndecisionApp, { options: ['Devils den', 'Second District'] }), document.getElementById('app'));
+>>>>>>> refs/remotes/origin/master
