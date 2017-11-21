@@ -1,23 +1,27 @@
-/* const square = function(x) {
-    return x * x;
-};
+// function square(x) {
+//   return x * x;
+// };
 
-//const squareArrow = (x) => {
-//    return x * x;
-//}
+// console.log(square(3));
 
-// TODAS AS FUNÇÕES ARROW SÃO ANONIMAS
-// QUANDO ESTAMOS TRABALHANDO COM A SINTAXE DE ARROW FUNCTION NÓS NAO USAMOS EXPLICITAMENTE O RETURN EM LUGAR ALGUM.
-const squareArrow = (x) => x * x;
+// // const squareArrow = (x) => {
+// //   return x * x;
+// // };
 
-console.log(squareArrow(7)); */
+// const squareArrow = (x) => x * x;
 
-/* const getFirstName = (fullName) => {
-    if (fullName) {
-        return fullName.split(' ')[0];
-    }
-} */
+// console.log(squareArrow(4));
+
+
+// Challenge - Use arrow functions
+// getFirstName('Mike Smith') -> "Mike"
+// Create regular arrow function
+// Create arrow function using shorthand syntax
+
+// const getFirstName = (fullName) => {
+//   return fullName.split(' ')[0];
+// };
 
 const getFirstName = (fullName) => fullName.split(' ')[0];
 
-console.log(getFirstName('arrow function'));
+console.log(getFirstName('Andrew Mead'));
