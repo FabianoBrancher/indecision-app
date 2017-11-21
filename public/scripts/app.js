@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -257,5 +256,3 @@ var AddOption = function (_React$Component2) {
 // };
 
 ReactDOM.render(React.createElement(IndecisionApp, { options: ['Devils den', 'Second District'] }), document.getElementById('app'));
-=======
->>>>>>> c1d7680fcf66b11afe5dec348d842b20ab48844f
