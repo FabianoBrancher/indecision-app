@@ -20,98 +20,35 @@ var Counter = function (_React$Component) {
         _this.handleMinusOne = _this.handleMinusOne.bind(_this);
         _this.handleReset = _this.handleReset.bind(_this);
 
-<<<<<<< HEAD
         _this.state = {
-            count: props.count
-=======
-  _createClass(IndecisionApp, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      try {
-        var json = localStorage.getItem('options');
-        var options = JSON.parse(json);
-
-        if (options) {
-          this.setState(function () {
-            return { options: options };
-          });
-        }
-      } catch (e) {
-        // Do nothing at all
-      }
-    }
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate(prevProps, prevState) {
-      if (prevState.options.length !== this.state.options.length) {
-        var json = JSON.stringify(this.state.options);
-        localStorage.setItem('options', json);
-      }
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      console.log('componentWillUnmount');
-    }
-  }, {
-    key: 'handleDeleteOptions',
-    value: function handleDeleteOptions() {
-      // this.setState(() => {
-      //   return {
-      //     options: []
-      //   };
-      // });
-      this.setState(function () {
-        return { options: [] };
-      });
-    }
-  }, {
-    key: 'handlePick',
-    value: function handlePick() {
-      var randomNum = Math.floor(Math.random() * this.state.options.length);
-      var option = this.state.options[randomNum];
-      alert(option);
-    }
-  }, {
-    key: 'handleAddOption',
-    value: function handleAddOption(option) {
-      if (!option) {
-        return 'Enter valid value to add item';
-      } else if (this.state.options.indexOf(option) > -1) {
-        return 'This option already exists';
-      }
-
-      // this.setState((prevState) => {
-      //   return {
-      //     options: prevState.options.concat([option])
-      //   };
-      // });
-      this.setState(function (prevState) {
-        return { options: prevState.options.concat([option]) };
-      });
-    }
-  }, {
-    key: 'handleDeleteOption',
-    value: function handleDeleteOption(optionToRemove) {
-
-      // this.setState((prevState) => {
-      //   return {
-      //     options: prevState.options.filter((option) => {
-      //       return optionToRemove !== option;
-      //     })
-      //   }
-      // });
-      this.setState(function (prevState) {
-        return {
-          options: prevState.options.filter(function (option) {
-            return optionToRemove !== option;
-          })
->>>>>>> b5a1c96e418edb0a6d8a8270b516e7141d632867
+            count: 0
         };
         return _this;
     }
 
     _createClass(Counter, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            try {
+                var stringCount = localStorage.getItem('count');
+                var count = parseInt(stringCount);
+                if (!isNaN(count)) {
+                    this.setState(function () {
+                        return { count: count };
+                    });
+                }
+            } catch (e) {
+                // Do nothing at all
+            }
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {
+            if (prevState.count !== this.state.count) {
+                localStorage.setItem('count', this.state.count);
+            }
+        }
+    }, {
         key: 'handleAddOne',
         value: function handleAddOne() {
             this.setState(function (prevState) {
@@ -173,11 +110,11 @@ var Counter = function (_React$Component) {
     return Counter;
 }(React.Component);
 
-Counter.defaultProps = {
-    count: 0
-};
+// Counter.defaultProps = {
+//     count: 0
+// };
 
-ReactDOM.render(React.createElement(Counter, { count: 5 }), document.getElementById('app'));
+ReactDOM.render(React.createElement(Counter, null), document.getElementById('app'));
 
 // const user = {
 //     name: 'Fabiano Brancher',
@@ -200,27 +137,10 @@ ReactDOM.render(React.createElement(Counter, { count: 5 }), document.getElementB
 //         <h1> {user.name ? user.name : 'Annonymous'} </h1>
 //         {(user.age && user.age >= 18) && <p>Age: {user.age} </p>}
 
-<<<<<<< HEAD
 //         {getLocation(user.location)}
 //     </div>
 // );
 //  
-=======
-var Options = function Options(props) {
-  return React.createElement(
-    'div',
-    null,
-    React.createElement(
-      'button',
-      { onClick: props.handleDeleteOptions },
-      ' Remove All '
-    ),
-    props.options.length === 0 && React.createElement(
-      'p',
-      null,
-      ' Please add an option to get started! '
-    ),
->>>>>>> b5a1c96e418edb0a6d8a8270b516e7141d632867
 
 // let count = 0;
 // const addOne = () => {
@@ -250,60 +170,7 @@ var Options = function Options(props) {
 //         </div>
 //     );
 
-<<<<<<< HEAD
 //     ReactDOM.render(templateTwo, appRoot);
-=======
-      var option = e.target.elements.option.value.trim();
-      var error = this.props.handleAddOption(option);
-
-      // this.setState(() => {
-      //   return {
-      //     error: error // identical to only writing: error
-      //   };
-      // });
-      this.setState(function () {
-        return { error: error };
-      });
-      if (!error) {
-        e.target.elements.option.value = '';
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return React.createElement(
-        'div',
-        null,
-        this.state.error && React.createElement(
-          'p',
-          null,
-          this.state.error
-        ),
-        React.createElement(
-          'form',
-          { onSubmit: this.handleAddOption },
-          React.createElement('input', { type: 'text', name: 'option', placeholder: 'Type option here' }),
-          React.createElement(
-            'button',
-            null,
-            'Add Option'
-          )
-        )
-      );
-    }
-  }]);
-
-  return AddOption;
-}(React.Component);
-
-// const User = (props) => {
-//   return (
-//     <div>
-//       <p>Name: {props.name} </p>
-//       <p>Age: {props.age} </p>
-//     </div>
-//   );
->>>>>>> b5a1c96e418edb0a6d8a8270b516e7141d632867
 // };
 
 // renderCounterApp();
